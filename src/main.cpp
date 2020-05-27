@@ -34,7 +34,7 @@ int main(int argc, const char* argv[])
 
 	bool verbose = false;
 	float treshhold = 0.8;
-
+	int HASHLEN = 13;
 	for (int i = 1; i < argc; i++)
 	{
 		cout << i << '\t' << argv[i] << endl;
@@ -68,6 +68,11 @@ int main(int argc, const char* argv[])
 			OUTPUT = argv[i + 1];
 		}
 
+		if (str_argi == "-l")
+		{
+			HASHLEN = stoi(argv[i+1]);
+		}
+
 	}	
 	cout << "Ref:   " << REF_IN << endl;
 	cout << "Reads: " << READS_IN << endl;
@@ -77,14 +82,28 @@ int main(int argc, const char* argv[])
 	Graph GMAIN;
 
 	GMAIN.LoadFromGFA(REF_IN);
-	GMAIN.BuildIndex(5, 13);
+
+	/*int size = 0;
+	int edges = 0;
+	for (auto k : GMAIN.Body)
+	{
+		size = size + GMAIN.Body[k.first].str.size();
+		edges = edges + GMAIN.Body[k.first].Next.size();
+	}
+	cout<<"edge:"<<edges<<endl;
+	cout<<GMAIN.Body.size()<<endl;
+	cout<<"size:"<<size<<endl;
+	cout<<"edge:"<<edges / GMAIN.Body.size()<<endl;*/
+
+
+	GMAIN.BuildIndex(5, HASHLEN);
 	
 	clock_t time_a = clock();
 	Results res = Align2GMAIN(GMAIN, READS_IN, treshhold, THREADS, verbose);
 	clock_t time_b = clock();
 	
-	cout << "Aligned: " << res.sumAlignment.size() << endl;
-	cout << "Avgtime: " << double(time_b-time_a)/CLOCKS_PER_SEC << endl;
+	//cout << "Aligned: " << res.sumAlignment.size() << endl;
+	//cout << "Avgtime: " << double(time_b-time_a)/CLOCKS_PER_SEC << endl;
 
 	ofstream fout = ofstream(OUTPUT+".vcf");
 	for (auto var: res.VarMap)
@@ -100,7 +119,7 @@ int main(int argc, const char* argv[])
 	fout << "Theads:"<< '\t' << THREADS << endl;
 	fout << "Tresh:"<< '\t' << treshhold << endl;
 	fout << "Aligned:"<< '\t' << res.sumAlignment.size() << endl;
-	fout << "Avgtime:"<< '\t' << res.time_avg << endl;
+	//fout << "Avgtime:"<< '\t' << res.time_avg << endl;
 	fout.close();
 
 }
