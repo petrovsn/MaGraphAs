@@ -17,6 +17,8 @@ usage:
 
 -o - output prefix
 
+-l - hash length. Default value is 13. Highly NOT RECOMMENDED to set this value lower than 6-7, it causes to decreasing of perfomance. 
+
 Output is a tabulated file with graph-based SNVs. 
 
 -First column is a coordinates in the graph, 
@@ -24,6 +26,8 @@ Output is a tabulated file with graph-based SNVs.
 -Second one is the alternative sequence, 
 
 -Thierd one is the coverage of the SNV. 
+
+/sample folder contains artificial graph and set of reads to test the program. 
 
 
 Tech support email: petrovsnwm@gmail.com
