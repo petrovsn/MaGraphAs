@@ -24,3 +24,6 @@ Output is a tabulated file with graph-based SNVs.
 -Second one is the alternative sequence, 
 
 -Thierd one is the coverage of the SNV. 
+
+
+In case of troubles with MaGraphAs you can write to this adress: petrovsnwm@gmail.com
