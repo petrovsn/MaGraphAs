@@ -3,6 +3,10 @@ MaGraphAs. Aligner against genome graphs.
 
 MaGraphAs is an aligner and SNV caller on genome graphs. It takes an assembly or variance genome graph in .gfa format[http://gfa-spec.github.io/GFA-spec/GFA1.html]  and returns a list of founded SNVs. 
 
+installation(requires C++11 and stl library):
+
+bash compile.sh
+
 usage:
 
 ./MaGraphAs -g file.gfa -f file.fasta -t 100 -c 0.8 -o output
