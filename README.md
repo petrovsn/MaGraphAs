@@ -18,6 +18,9 @@ usage:
 -o - output prefix
 
 Output is a tabulated file with graph-based SNVs. 
+
 -First column is a coordinates in the graph, 
+
 -Second one is the alternative sequence, 
+
 -Thierd one is the coverage of the SNV. 
